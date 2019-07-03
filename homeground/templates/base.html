@@ -1,3 +1,4 @@
+{% load bootstrap3 %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,9 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Homex</title>
+    {% block styles %}
+    {% bootstrap_css %}
+    {% endblock %}
 </head>
 <body>
-    {% block content %}<h1></h1>
+    {% block content %}<h1 class="text-center"></h1>
     {% endblock %}
+    {% block scripts %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+     {% bootstrap_javascript %}
+    {% endblock %}
+    
 </body>
 </html>
