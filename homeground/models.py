@@ -11,6 +11,9 @@ class Resident(models.Model):
     def __str__(self):
         return self.first_name
 
+    def save_resident(self):
+        self.save()
+
     class Meta:
         ordering = ['first_name']
 

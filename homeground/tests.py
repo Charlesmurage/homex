@@ -11,3 +11,8 @@ class ResidentTestClass(TestCase):
 
     def test_instance(self):
         self.assertTrue(isinstance(self.charles,Resident))
+
+    def test_save_method(self):
+        self.charles.save_resident()
+        resident = Resident.objects.all()
+        self.assertTrue(len(resident) > 0)
