@@ -13,7 +13,7 @@ def welcome(request):
     return render(request,'home.html',{"business": business})
 
 @login_required(login_url='/accounts/login/')
-def business(request):
+def new_business(request):
     current_user = request.current_user
     if request.method =='POST':
         form = NewBusinessForm(request.POST, request.FILES)

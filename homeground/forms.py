@@ -1,4 +1,5 @@
 from .models import Business
+from django import forms
 
 class NewBusinessForm(forms.ModelForm):
     class Meta:
