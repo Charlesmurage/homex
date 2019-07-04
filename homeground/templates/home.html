@@ -2,24 +2,37 @@
 {% block content %}
 {{ block.super }}
 
-<div class="container">
-    {% for business_item in business %}
 <div class="row">
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <h2 class="text-center">{{business_item.title }}</h2>
+    <h1 class="text-center">welcome to Homex</h1>
+</div>
+<div class="container">
+
+    <div class="row">
+        {% for business_item in business %}
+
+
+        <div class="col-md-4">
+            <div class="card mb-2">
+                {% if business_item.business_image %}
+                <img class="card-img-top" src="{{business_item.business_image.url}}"
+                    height="auto" width="200px !important">
+                
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ business_item.title }} </h5>
+                    <p class="card-text"><h4>{{ business_item.selling }}</h4></p>
+                    <a class="btn btn-primary">
+                        Read More
+                    </a>
+                    <h2 class="text-center"> </h2>
+                </div>
+            </div>
+        </div>
+
+
+        {% empty %}
     </div>
-    
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <img src="{{business_item.businesses_image.url}}" class="img-responsive" alt="Image">
-    
-    </div>
+    {% endfor %}
 </div>
 
-{% empty %}
-<div class="row">
-    <h2 class="text-center">There are no businesses</h2>
-</div>
-{% endfor %}
-</div>
-<h1>Lets Begin!</h1>
 {% endblock %}
