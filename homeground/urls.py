@@ -6,7 +6,9 @@ from django.conf.urls.static import static
 urlpatterns=[
     url('^$',views.welcome, name= 'welcome'),
     url(r'^new/business$', views.new_business, name='new-business'),
-    url(r'^new/community$', views.new_community, name='new-community')
+    url(r'^new/community$', views.new_community, name='new-community'),
+    url(r'community/business/all', views.businesses, name="businesses")
+    
 ]
 
 if settings.DEBUG:

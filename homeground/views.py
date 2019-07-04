@@ -10,8 +10,12 @@ from django.contrib.auth.models import User
 
 
 def welcome(request):
+    community = Community.objects.all()
+    return render(request,'home.html',{"community": community})
+
+def businesses(request):
     business = Business.objects.all()
-    return render(request,'home.html',{"business": business})
+    return render(request,'businesses.html',{"business": business})
 
 @login_required(login_url='/accounts/login/')
 def new_business(request):
@@ -23,7 +27,7 @@ def new_business(request):
             business = form.save(commit=False)
             business.resident = current_user
             business.save()
-        return redirect('welcome')
+            return redirect('welcome')
 
 
     else:

@@ -12,20 +12,20 @@
 <div class="container">
 
     <div class="row">
-        {% for community_item in community %}
+        {% for business_item in business %}
 
 
         <div class="col-md-4">
             <div class="card mb-2">
-                {% if community_item.community_image %}
-                <img class="card-img-top" src="{{community_item.community_image.url}}"
+                {% if business_item.business_image %}
+                <img class="card-img-top" src="{{business_item.business_image.url}}"
                     height="auto" width="200px !important">
                 
                 {% endif %}
                 <div class="card-body">
-                    <h5 class="card-title">{{ community_item.title }} </h5>
-                    <p class="card-text"><h4>{{ community_item.estate }}</h4></p>
-                    <a  href="{%  url 'businesses'  %}" class="btn btn-primary">
+                    <h5 class="card-title">{{ business_item.title }} </h5>
+                    <p class="card-text"><h4>{{ business_item.estate }}</h4></p>
+                    <a  class="btn btn-primary">
                         Read More
                     </a>
                     <h2 class="text-center"> </h2>
