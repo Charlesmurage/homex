@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse
-from .models import Business
+from .models import Business, Community
 from django.contrib.auth.decorators import login_required
-from .forms import NewBusinessForm
+from .forms import NewBusinessForm, NewCommunityForm
+from django.contrib.auth.models import User
 
 
 def welcome(request):
@@ -14,7 +15,7 @@ def welcome(request):
 
 @login_required(login_url='/accounts/login/')
 def new_business(request):
-    current_user = request.current_user
+    current_user = request.user
     if request.method =='POST':
         form = NewBusinessForm(request.POST, request.FILES)
 
@@ -29,3 +30,20 @@ def new_business(request):
         form = NewBusinessForm()
     return render(request, 'new_business.html', {"form":form})
     
+
+@login_required(login_url='/accounts/login/')
+def new_community(request):
+    current_user = request.user
+    if request.method =='POST':
+        form = NewCommunityForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            community = form.save(commit=False)
+            community.resident = current_user
+            community.save()
+        return redirect('welcome')
+
+
+    else:
+        form = NewCommunityForm()
+    return render(request, 'new_community.html', {"form":form})

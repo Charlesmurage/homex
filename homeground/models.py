@@ -34,3 +34,10 @@ class Business(models.Model):
     resident = models.ForeignKey(User,on_delete=models.CASCADE)
     tags = models.ManyToManyField(tags)  
     business_image = models.ImageField(upload_to = 'businesses/', blank =True)  
+
+class Community(models.Model):
+    name = models.CharField(max_length =30)
+    county = models.CharField(max_length =30)
+    estate = models.CharField(max_length =30)
+    resident = models.ForeignKey(User,on_delete=models.CASCADE)
+    community_image = models.ImageField(upload_to = 'community/', blank =True)  
