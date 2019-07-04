@@ -8,6 +8,7 @@ class Resident(models.Model):
     first_name = models.CharField(max_length =30)
     last_name = models.CharField(max_length =30)
     phone_number = models.CharField(max_length =10, blank =True)
+    resident_image = models.ImageField(upload_to = 'residents/', blank =True)
 
     def __str__(self):
         return self.first_name
@@ -28,4 +29,5 @@ class Business(models.Model):
     title = models.CharField(max_length =40)
     selling = models.CharField(max_length =60)
     resident = models.ForeignKey(Resident)
-    tags = models.ManyToManyField(tags)    
+    tags = models.ManyToManyField(tags)  
+    business_image = models.ImageField(upload_to = 'businesses/', blank =True)  

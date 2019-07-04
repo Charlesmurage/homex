@@ -8,4 +8,5 @@ from .models import Business
 # Create your views here.
 def welcome(request):
     business = Business.objects.all()
-    return render(request,'home.html',{"business":business})
+    
+    return render(request,'home.html',{"business": business})
