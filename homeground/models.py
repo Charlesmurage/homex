@@ -2,6 +2,8 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.contrib.auth.models import User
+from tinymce.models import HTMLField
 
 # Create your models here.
 class Resident(models.Model):
@@ -28,6 +30,7 @@ class tags(models.Model):
 class Business(models.Model):
     title = models.CharField(max_length =40)
     selling = models.CharField(max_length =60)
-    resident = models.ForeignKey(Resident)
+    post = HTMLField
+    resident = models.ForeignKey(User,on_delete=models.CASCADE)
     tags = models.ManyToManyField(tags)  
     business_image = models.ImageField(upload_to = 'businesses/', blank =True)  
