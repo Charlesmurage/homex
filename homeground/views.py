@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
-from .models import Business, Community
+from .models import Business, Community, Resident
 from django.contrib.auth.decorators import login_required
 from .forms import NewBusinessForm, NewCommunityForm
 from django.contrib.auth.models import User
@@ -16,6 +16,10 @@ def welcome(request):
 def businesses(request):
     business = Business.objects.all()
     return render(request,'businesses.html',{"business": business})
+
+def residents(request):
+    residents = Resident.objects.all()
+    return render(request,'residents.html',{"residents":residents})
 
 @login_required(login_url='/accounts/login/')
 def new_business(request):

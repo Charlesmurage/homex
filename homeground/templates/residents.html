@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+{{ block.super }}
+{% load static %}
+{% load bootstrap3 %}
+
+<div class="row">
+    <div class="jumbotron">
+        <h1 class="text-center">Welcome to Homex</h1>
+    </div>
+<div class="container">
+
+    <div class="row">
+        {% for residents_item in residents %}
+
+
+        <div class="col-md-6">
+            <div class="card-body">
+                {% if resident_item.residents_image %}
+                <img class="card-img-top" src="{{residents_item.resident_image.url}}" height="auto"
+                    width="400px !important">
+
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ resident_item.title }} </h5>
+                    <p class="card-text">
+                        <h4>{{ resident_item.first_name }}</h4>
+                    </p>
+                    <a href="{%  url 'residents'  %}" class="btn btn-primary">
+                        View More Info
+                    </a>
+                    <h2 class="text-center"> </h2>
+                </div>
+            </div>
+        </div>
+
+
+        {% empty %}
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
