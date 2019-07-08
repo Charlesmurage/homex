@@ -56,7 +56,7 @@ def new_community(request):
         form = NewCommunityForm()
     return render(request, 'new_community.html', {"form":form})
 
-def newcomment(request,id):
+def newcomment(request, id):
     current_user = request.user
 
     try:
