@@ -20,7 +20,7 @@ The user should be able to:
 To install, follow the following instructions;
 
 ```bash
-    $ git clone https://github.com/jmuema/hoodwatch.git
+    $ git clone https://github.com/charlesmurage/hoodwatch.git
     $ cd Hood
     $ source virtual/bin/activate
     Install all the necessary requirements by running pip install -r requirements.txt (Python 3.6).
