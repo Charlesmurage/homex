@@ -41,3 +41,9 @@ class Community(models.Model):
     estate = models.CharField(max_length =30)
     resident = models.ForeignKey(User,on_delete=models.CASCADE)
     community_image = models.ImageField(upload_to = 'community/', blank =True)  
+
+class Comment(models.Model):
+  comment = models.TextField()
+  post = models.ForeignKey(Post,on_delete=models.CASCADE)
+  postername= models.ForeignKey(User, on_delete=models.CASCADE)
+  pub_date = models.DateTimeField(auto_now_add=True)

@@ -16,3 +16,8 @@ class NewCommunityForm(forms.ModelForm):
         widgets = {
             'tags': forms.CheckboxSelectMultiple(),
         }
+
+class NewCommentForm(forms.ModelForm):
+  class Meta:
+    model = Comment
+    exclude = ['post','postername','pub_date']
