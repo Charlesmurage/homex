@@ -7,6 +7,7 @@ urlpatterns=[
     url('^$',views.welcome, name= 'welcome'),
     url(r'^new/business$', views.new_business, name='new-business'),
     url(r'^new/community$', views.new_community, name='new-community'),
+    url(r'^new/comment$',views.newcomments, name='new-comment'),
     url(r'community/business/all', views.businesses, name="businesses"),
     url(r'community/resident/all',views.residents, name="residents")
     

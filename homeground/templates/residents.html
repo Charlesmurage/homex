@@ -17,16 +17,16 @@
 
         <div class="col-md-4">
             <div class="card mb-2">
-                {% if residents_item.residents_image %}
-                <img class="card-img-top" src="{{resident_item.residents_image.url}}"
+                {% if residents_item.resident_image %}
+                <img class="card-img-top" src="{{residents_item.resident_image.url}}"
                     height="auto" width="200px !important">
                 
                 {% endif %}
                 <div class="card-body">
-                    <h5 class="card-title">{{ residents_item.title }} </h5>
+                    <h5 class="card-title">{{ residents_item.first_name }} </h5>
                     <p class="card-text"><h4>{{ residents_item.estate }}</h4></p>
-                    <a  class="btn btn-primary">
-                        Read More
+                    <a  class="btn btn-info">
+                        About
                     </a>
                     <h2 class="text-center"> </h2>
                 </div>
