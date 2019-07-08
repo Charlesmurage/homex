@@ -1,4 +1,4 @@
-from .models import Business, Community
+from .models import Business, Community ,Comment
 from django import forms
 
 class NewBusinessForm(forms.ModelForm):

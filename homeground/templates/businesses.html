@@ -29,6 +29,17 @@
                         Read More
                     </a>
                     <h2 class="text-center"> </h2>
+                    {% for comment in comments %}
+                    <div class="card text-white bg-secondary mb-3">
+                      <div class="card-body firstletter">
+                        {{comment.comment}}
+                        <footer class="blockquote-footer" style="color:white;">
+                          <cite title="Source Title">{{comment.postername}}</cite>
+                        </footer>
+                      </div>
+                    </div>
+                    <p></p>
+                    {% endfor %}
                 </div>
             </div>
         </div>
