@@ -5,7 +5,7 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from .models import Business, Community, Resident 
 from django.contrib.auth.decorators import login_required
-from .forms import NewBusinessForm, NewCommunityForm
+from .forms import NewBusinessForm, NewCommunityForm, NewCommentForm
 from django.contrib.auth.models import User
 
 
@@ -13,13 +13,18 @@ def welcome(request):
     community = Community.objects.all()
     return render(request,'home.html',{"community": community})
 
-def businesses(request):
-    business = Business.objects.all()
+def businesses(request, hood_id):
+    business = Business.objects.filter(community_id=hood_id)
+    print([x.details for x in business])
     return render(request,'businesses.html',{"business": business})
 
 def residents(request):
     residents = Resident.objects.all()
     return render(request,'residents.html',{"residents":residents})
+
+def comments(request):
+    comments = Comment.objects.all()
+    return render(request,'businesses.html',{"comments":comments})
 
 @login_required(login_url='/accounts/login/')
 def new_business(request):
@@ -56,23 +61,19 @@ def new_community(request):
         form = NewCommunityForm()
     return render(request, 'new_community.html', {"form":form})
 
-def newcomment(request, id):
+@login_required(login_url='/accounts/login/')
+def new_comment(request):
     current_user = request.user
+    if request.method =='POST':
+        form = NewCommentForm(request.POST, request.FILES)
 
-    try:
-        comments = Comment.objects.filter(post_id=id)
-    except:
-        comments = []
-    brush= Post.objects.get(id=id)
-    if request.method =="POST":
-        form = NewCommentForm(request.POST,request.FILES)
         if form.is_valid():
-            comment = form.save(commit=False)
-            comment.postername = current_user
-            comment.post = brush
-            comment.save()
+            community = form.save(commit=False)
+            community.resident = current_user
+            community.save()
+        return redirect('welcome')
+
+
     else:
         form = NewCommentForm()
-
-    return render(request, 'newcomments.html',{'brush':brush,"comments":comments,"form":form})
-
+    return render(request, 'newcomments.html', {"form":form})

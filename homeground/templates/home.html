@@ -4,43 +4,45 @@
 {% load static %}
 {% load bootstrap3 %}
 
-<div class="row">
-    <div class="jumbotron">
-        <h1 class="text-center">Welcome to Homex</h1>
-    </div>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
 <div class="container">
 
     <div class="row">
         {% for community_item in community %}
-
-
         <div class="col-md-6">
-            <div class="card-md-2">
-                {% if community_item.community_image %}
-                <img class="card-img-top" src="{{community_item.community_image.url}}" height="auto"
-                    width="400px !important">
 
-                {% endif %}
-                <div class="card-md-2">
+            <br>
+
+
+            <div class="w3-card-4" style="width:80%">
+
+                <img src="{{community_item.community_image.url}}" alt="Alps" style="width:100%">
+
+                <div class="container">
                     <h5 class="card-title">{{ community_item.title }} </h5>
                     <p class="card-text">
-                        <h4>{{ community_item.estate }}</h4>
+                        <h4>{{ community_item.name }}</h4>
                     </p>
-                    <a href="{%  url 'businesses'  %}" class="btn btn-primary">
-                        View More Info
+                    <a href="{% url 'businesses' community_item.id %}" class="btn btn-danger">
+                        View Available Houses
                     </a>
-                    <a href="{%  url 'residents'  %}" class="btn btn-primary">
-                        See Residents
-                    </a>
-                    <h2 class="text-center"> </h2>
+
+
+                    <div class="w3-container w3-center">
+
+                        <h5>{{ community_item.title }}</h5>
+
+                    </div>
                 </div>
             </div>
         </div>
 
 
+
         {% empty %}
     </div>
     {% endfor %}
-</div>
 
-{% endblock %}
+    {% endblock %}

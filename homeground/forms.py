@@ -4,10 +4,7 @@ from django import forms
 class NewBusinessForm(forms.ModelForm):
     class Meta:
         model = Business
-        exclude = ['resident',]
-        widgets = {
-            'tags': forms.CheckboxSelectMultiple(),
-        }
+        fields=('poster','title','business_image','community','location','details')
 
 class NewCommunityForm(forms.ModelForm):
     class Meta:
@@ -20,4 +17,4 @@ class NewCommunityForm(forms.ModelForm):
 class NewCommentForm(forms.ModelForm):
   class Meta:
     model = Comment
-    exclude = ['post','postername','pub_date']
+    fields = ('postername','comment')

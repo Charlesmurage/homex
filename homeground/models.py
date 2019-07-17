@@ -28,13 +28,6 @@ class tags(models.Model):
     def __str__(self):
         return self.name
 
-class Business(models.Model):
-    title = models.CharField(max_length =40)
-    selling = models.CharField(max_length =60)
-    post = HTMLField
-    resident = models.ForeignKey(User,on_delete=models.CASCADE)
-    tags = models.ManyToManyField(tags)  
-    business_image = models.ImageField(upload_to = 'businesses/', blank =True)  
 
 class Community(models.Model):
     name = models.CharField(max_length =30)
@@ -42,6 +35,21 @@ class Community(models.Model):
     estate = models.CharField(max_length =30)
     resident = models.ForeignKey(User,on_delete=models.CASCADE)
     community_image = models.ImageField(upload_to = 'community/', blank =True)  
+    def __str__(self):
+        return self.name
+class Business(models.Model):
+    poster = models.CharField(max_length=40, blank=True)
+    title = models.CharField(max_length =40)
+    selling = models.CharField(max_length =60, default='shoes')
+    post = HTMLField
+    community = models.ForeignKey(Community,on_delete=models.CASCADE, default=2)
+    tags = models.ManyToManyField(tags)
+    details = models.TextField(blank=True)  
+    location = models.CharField(max_length=100, blank=True)
+    business_image = models.ImageField(upload_to = 'businesses/', blank =True) 
+    def __str__(self):
+        return self.title
+
 
 
 class Post(models.Model):
@@ -51,6 +59,6 @@ class Post(models.Model):
 
 class Comment(models.Model):
     comment = models.TextField()
-    post = models.ForeignKey("Post",on_delete=models.CASCADE)
     postername= models.ForeignKey(User, on_delete=models.CASCADE)
     pub_date = models.DateTimeField(auto_now_add=True)
+    business = models.ForeignKey(Business,on_delete=models.CASCADE, default=2)
